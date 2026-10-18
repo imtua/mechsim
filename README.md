@@ -10,6 +10,7 @@ Check out these links to find out
 - <a href="https://mechanics.help"><b>Mechanics Homepage</b></a>
 - <a href="https://mechanics.help/pend/"><b>Single Pendulum</b></a>
 - <a href="https://mechanics.help/dpend/"><b>Double Pendulum</b></a>
+- <a href="https://mechanics.help/atwood/"><b>Swinging Atwood Machine</b></a>
 - <a href="https://mechanics.help/slope/"><b>Disk on Slope</b></a>
 - <a href="https://mechanics.help/disk/"><b>Rolling Disk Pendulum</b></a>
 - <a href="https://mechanics.help/elastic/"><b>Elastic Pendulum</b></a>

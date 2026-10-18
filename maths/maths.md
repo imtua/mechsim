@@ -82,7 +82,38 @@ $$
 +m_2gl_2\sin\theta_2=0.
 $$
 
-## 3. Rolling disk pendulum
+## 3. Swinging Atwood machine
+
+Generalized coordinates: `q₁ = r` and `q₂ = theta`.
+
+The vertically constrained mass has height `r`. The swinging mass has
+position:
+
+$$
+\mathbf r_2=(r\sin\theta,-r\cos\theta).
+$$
+
+The energies are:
+
+$$
+T=\frac12(M+m)\dot r^2+\frac12mr^2\dot\theta^2,
+$$
+
+$$
+V=Mgr-mgr\cos\theta.
+$$
+
+The equations of motion are:
+
+$$
+(M+m)\ddot r-mr\dot\theta^2+g(M-m\cos\theta)=0,
+$$
+
+$$
+mr^2\ddot\theta+2mr\dot r\dot\theta+mgr\sin\theta=0.
+$$
+
+## 4. Rolling disk pendulum
 
 Generalized coordinates:
 
@@ -185,7 +216,7 @@ $$
 
 These are the coupled equations expanded and integrated by the simulator.
 
-## 4. Disk on slope
+## 5. Disk on slope
 
 Generalized coordinate: $q=x$.
 

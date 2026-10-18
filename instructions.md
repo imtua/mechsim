@@ -4,9 +4,10 @@ This repository contains five browser-based classical-mechanics simulations:
 
 1. Simple Pendulum
 2. Double Pendulum
-3. Rolling Disk Pendulum
-4. Disk on Slope
-5. Elastic Pendulum
+3. Swinging Atwood Machine
+4. Rolling Disk Pendulum
+5. Disk on Slope
+6. Elastic Pendulum
 
 Each simulation has a `description.md`, `index.html`, and `system.py`.
 
@@ -69,6 +70,16 @@ constructs and solves a 2×2 acceleration system at every step.
 
 Defaults: `m1 = 1`, `m2 = 1`, `g = 10`, `l1 = 0.5`, `l2 = 0.5`,
 `theta1 = 2`, and `theta2 = 3.14`.
+
+## Swinging Atwood Machine
+
+Files: `atwood/description.md`, `atwood/index.html`, `atwood/system.py`
+
+A vertically moving mass `M` is coupled to a swinging mass `m` by a
+variable-length cord. The coordinates are radial distance `r` and angle
+`theta`. The changing radius couples radial and angular motion.
+
+Defaults: `m = 1`, `M = 5`, `g = 10`, `r = 1`, and `theta = pi/2`.
 
 ## Rolling Disk Pendulum
 
