@@ -10,16 +10,9 @@ Check out these links to find out
 - <a href="https://mechanics.help"><b>Mechanics Homepage</b></a>
 - <a href="https://mechanics.help/pend/"><b>Single Pendulum</b></a>
 - <a href="https://mechanics.help/dpend/"><b>Double Pendulum</b></a>
-- <a href="https://mechanics.help/atwood/"><b> Swinging Atwood Machine</b></a>
-- <a href="https://mechanics.help/cart/"><b>Cart and Pendulum</b></a>
 - <a href="https://mechanics.help/slope/"><b>Disk on Slope</b></a>
 - <a href="https://mechanics.help/disk/"><b>Rolling Disk Pendulum</b></a>
 - <a href="https://mechanics.help/elastic/"><b>Elastic Pendulum</b></a>
-- <a href="https://mechanics.help/bead/"><b>Bead on a Rotating Hoop</b></a>
-- <a href="https://mechanics.help/chain/"><b>Coupled Spring-Mass Chain</b></a>
-- <a href="https://mechanics.help/spherical/"><b>Spherical Pendulum</b></a>
-- <a href="https://mechanics.help/kapitza/"><b>Kapitza Pendulum</b></a>
-- <a href="https://mechanics.help/top/"><b>Symmetric Spinning Top</b></a>
 - <a href="https://mechanics.help/mechmaths/"><b>Learn how mechmaths work</b></a>
 
 

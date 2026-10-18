@@ -82,76 +82,7 @@ $$
 +m_2gl_2\sin\theta_2=0.
 $$
 
-## 3. Swinging Atwood machine
-
-Generalized coordinates: $q_1=r$ and $q_2=\theta$.
-
-The vertically constrained mass has height $r$. The swinging mass has position relative to its pivot
-
-$$
-\mathbf r_2=(r\sin\theta,-r\cos\theta).
-$$
-
-The energies are
-
-$$
-T=\frac12(M+m)\dot r^2+\frac12mr^2\dot\theta^2,
-$$
-
-$$
-V=Mgr-mgr\cos\theta.
-$$
-
-The equations of motion are
-
-$$
-(M+m)\ddot r-mr\dot\theta^2+g(M-m\cos\theta)=0,
-$$
-
-$$
-mr^2\ddot\theta+2mr\dot r\dot\theta+mgr\sin\theta=0.
-$$
-
-## 4. Cart and pendulum
-
-Generalized coordinates: $q_1=x$ and $q_2=\theta$.
-
-The pendulum bob position is
-
-$$
-\mathbf r=(x-l\sin\theta,\tfrac12-l\cos\theta).
-$$
-
-The spring has unstretched length $d$ and is attached to the cart so that its extension is $x$. Thus,
-
-$$
-V_{\text{spring}}=\frac12kx^2.
-$$
-
-The energies are
-
-$$
-T=\frac12(M+m)\dot x^2
--ml\cos\theta\dot x\dot\theta
-+\frac12ml^2\dot\theta^2,
-$$
-
-$$
-V=mg\left(\frac12-l\cos\theta\right)+\frac12kx^2.
-$$
-
-The equations of motion are
-
-$$
-(M+m)\ddot x-ml\cos\theta\ddot\theta
-+ml\sin\theta\dot\theta^2+kx=0,
-$$
-
-$$
-ml^2\ddot\theta-ml\cos\theta\ddot x+mgl\sin\theta=0.
-$$
-
-## 5. Rolling disk pendulum
+## 3. Rolling disk pendulum
 
 Generalized coordinates:
 
@@ -254,7 +185,7 @@ $$
 
 These are the coupled equations expanded and integrated by the simulator.
 
-## 6. Disk on slope
+## 4. Disk on slope
 
 Generalized coordinate: $q=x$.
 

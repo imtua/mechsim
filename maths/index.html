@@ -89,7 +89,6 @@
             <a href="#pendulums">Pendulums</a>
             <a href="#springs">Springs</a>
             <a href="#rolling">Rolling systems</a>
-            <a href="#advanced">Advanced systems</a>
             <a href="#numerics">Numerical solution</a>
         </nav>
 
@@ -165,74 +164,7 @@
             every time step.
         </p>
 
-        <h3>Spherical pendulum</h3>
-        <p>
-            The polar angle \(\theta\) and azimuth \(\phi\) locate the bob on a
-            sphere of radius \(l\):
-        </p>
-        <div class="equation">
-            \[
-            T=\frac12ml^2\left(\dot\theta^2+
-            \sin^2\theta\,\dot\phi^2\right),\qquad
-            V=-mgl\cos\theta.
-            \]
-        </div>
-        <p>
-            Since \(\phi\) does not appear in \(L\), it is cyclic. Its conjugate
-            momentum is conserved:
-        </p>
-        <div class="equation">
-            \[
-            p_\phi=\frac{\partial L}{\partial\dot\phi}
-            =ml^2\sin^2\theta\,\dot\phi.
-            \]
-        </div>
-
-        <h3>Bead on a rotating hoop</h3>
-        <p>
-            A hoop rotates about its vertical diameter with prescribed angular
-            speed \(\Omega\). For bead angle \(\theta\), the kinetic energy is
-        </p>
-        <div class="equation">
-            \[
-            T=\frac12mR^2\left(\dot\theta^2+
-            \Omega^2\sin^2\theta\right),\qquad
-            V=-mgR\cos\theta.
-            \]
-        </div>
-        <p>
-            The \(\Omega^2\sin^2\theta\) term is the rotational kinetic energy
-            caused by the hoop itself, and changes the equilibria.
-        </p>
-
-        <h3>Kapitza pendulum</h3>
-        <p>
-            The pivot height is prescribed as \(y_p=a\cos(\Omega t)\). The bob
-            position is
-        </p>
-        <div class="equation">
-            \[
-            x=l\sin\theta,\qquad y=a\cos(\Omega t)-l\cos\theta.
-            \]
-        </div>
-        <div class="equation">
-            \[
-            T=\frac12m\left[
-            l^2\cos^2\theta\,\dot\theta^2+
-            \left(-a\Omega\sin(\Omega t)+l\sin\theta\,\dot\theta\right)^2
-            \right],
-            \]
-            \[
-            V=mg\left[a\cos(\Omega t)-l\cos\theta\right].
-            \]
-        </div>
-        <p class="note">
-            \(L\) depends explicitly on time, so mechanical energy is not
-            conserved. At sufficiently rapid vibration, the time-averaged
-            dynamics can stabilize the normally unstable inverted position.
-        </p>
-
-        <h2 id="springs">3. Springs and coupled oscillators</h2>
+        <h2 id="springs">3. Springs</h2>
         <h3>Elastic pendulum</h3>
         <p>
             Using radial extension \(r\) and angle \(\theta\), the bob is
@@ -246,38 +178,7 @@
             \]
         </div>
 
-        <h3>Coupled spring-mass chain \((x_1,x_2,x_3)\)</h3>
-        <p>
-            Three masses move horizontally, with identical springs attached to
-            both walls and between neighboring masses. Displacements are
-            measured from equilibrium:
-        </p>
-        <div class="equation">
-            \[
-            T=\frac12m_1\dot x_1^2+\frac12m_2\dot x_2^2+
-            \frac12m_3\dot x_3^2,
-            \]
-            \[
-            V=\frac12k\left[x_1^2+(x_2-x_1)^2+
-            (x_3-x_2)^2+x_3^2\right].
-            \]
-        </div>
-        <p>
-            The equations are
-        </p>
-        <div class="equation">
-            \[
-            m_1\ddot x_1+k(2x_1-x_2)=0,
-            \]
-            \[
-            m_2\ddot x_2+k(2x_2-x_1-x_3)=0,
-            \]
-            \[
-            m_3\ddot x_3+k(2x_3-x_2)=0.
-            \]
-        </div>
-
-        <h2 id="rolling">4. Rolling and constrained systems</h2>
+        <h2 id="rolling">4. Rolling systems</h2>
         <h3>Disk on a slope</h3>
         <p>
             The slope direction is \(\hat p=(2,-1)/\sqrt5\), and the disk
@@ -291,40 +192,6 @@
             \]
             \[
             \ddot x=\frac{mg}{\sqrt5(m+I/r^2)}.
-            \]
-        </div>
-
-        <h3>Cart and pendulum</h3>
-        <p>
-            For cart displacement \(x\) and pendulum angle \(\theta\), the
-            coupled energies are
-        </p>
-        <div class="equation">
-            \[
-            T=\frac12(M+m)\dot x^2-ml\cos\theta\,\dot x\dot\theta+
-            \frac12ml^2\dot\theta^2,
-            \]
-            \[
-            V=mg\left(\frac12-l\cos\theta\right)+\frac12kx^2.
-            \]
-        </div>
-
-        <h3>Swinging Atwood machine</h3>
-        <p>
-            With hanging coordinate \(r\) and swing angle \(\theta\):
-        </p>
-        <div class="equation">
-            \[
-            T=\frac12(M+m)\dot r^2+\frac12mr^2\dot\theta^2,
-            \qquad V=Mgr-mgr\cos\theta,
-            \]
-            \[
-            (M+m)\ddot r-mr\dot\theta^2+
-            g(M-m\cos\theta)=0,
-            \]
-            \[
-            mr^2\ddot\theta+2mr\dot r\dot\theta+
-            mgr\sin\theta=0.
             \]
         </div>
 
@@ -350,38 +217,7 @@
             expanded equations.
         </p>
 
-        <h2 id="advanced">5. Rotational systems</h2>
-        <h3>Symmetric spinning top</h3>
-        <p>
-            The top uses Euler angles \(\theta,\phi,\psi\). Here \(\theta\) is
-            nutation, \(\phi\) is precession, and \(\psi\) is spin. With
-            transverse inertia \(I_1\) and axial inertia \(I_3\):
-        </p>
-        <div class="equation">
-            \[
-            T=\frac12I_1\left(\dot\theta^2+
-            \sin^2\theta\,\dot\phi^2\right)
-            +\frac12I_3\left(\dot\psi+\dot\phi\cos\theta\right)^2,
-            \]
-            \[
-            V=mgl\cos\theta.
-            \]
-        </div>
-        <p>
-            Both \(\phi\) and \(\psi\) are absent from \(L\), so their momenta
-            are conserved:
-        </p>
-        <div class="equation">
-            \[
-            p_\psi=I_3(\dot\psi+\dot\phi\cos\theta),
-            \]
-            \[
-            p_\phi=I_1\sin^2\theta\,\dot\phi+
-            I_3\cos\theta(\dot\psi+\dot\phi\cos\theta).
-            \]
-        </div>
-
-        <h2 id="numerics">6. Numerical integration and conservation</h2>
+        <h2 id="numerics">5. Numerical integration and conservation</h2>
         <p>
             The simulation advances time in small substeps. For state
             \(z=(q,\dot q)\), it evaluates
@@ -410,8 +246,6 @@
         <p>
             For time-independent systems, total energy \(E=T+V\) should remain
             nearly constant; small changes come from numerical integration.
-            Cyclic coordinates provide additional conserved momenta, while the
-            explicitly time-dependent Kapitza pendulum does not conserve energy.
         </p>
 
         <a class="back-link" href="../">← Back to Mechanics</a>
