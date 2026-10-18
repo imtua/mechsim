@@ -29,7 +29,7 @@ attributionLabel.innerHTML = `Open sourced, made by <a href="https://github.com/
 
 const mechmathLink = document.createElement("a");
 mechmathLink.id = "mechmath-link";
-mechmathLink.href = "https://mechanics.help/mechmaths";
+mechmathLink.href = "../mechmaths/README.md";
 mechmathLink.textContent = "Learn how mechmath works";
 
 const systemModal = document.createElement("div");

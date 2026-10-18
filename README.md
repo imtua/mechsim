@@ -1,20 +1,20 @@
 # Mechanics
 
-<a href="mechanics.help"><b>Mechanics</b></a> is a mechanical system simulator that uses Lagrangian mechanics and Runge-Kutta methods to simulate various constrained system. From expressions of energy, it is capable of deriving equations of motion using symbolic differentiation and then stepping through them in time to simulate the motion of the system.
+<a href="./"><b>Mechsim</b></a> is a mechanical system simulator that uses Lagrangian mechanics and Runge-Kutta methods to simulate various constrained system. From expressions of energy, it is capable of deriving equations of motion using symbolic differentiation and then stepping through them in time to simulate the motion of the system.
 
 # How to use
 
 The homepage has button with images to help understand users, links to each of the system simulator pages. Each page has an energy-label and diagram, playback buttons and sometimes system equations. Mechanism metrics are present there in the right middle side. The Rolling Disk Pendulum has equations of motion too complex to display on the screen. There is also a button to view the Python system file that creates the solver. Another button, description, present there to make understand users with simple text. Under every page, there's a button says "Learn how mechmaths work", press into that button and you'll know how MechMaths, my own custom library works. The page runs best on a landscape desktop orientation.
 
 Check out these links to find out
-- <a href="https://mechanics.help"><b>Mechanics Homepage</b></a>
-- <a href="https://mechanics.help/pend/"><b>Single Pendulum</b></a>
-- <a href="https://mechanics.help/dpend/"><b>Double Pendulum</b></a>
-- <a href="https://mechanics.help/atwood/"><b>Swinging Atwood Machine</b></a>
-- <a href="https://mechanics.help/slope/"><b>Disk on Slope</b></a>
-- <a href="https://mechanics.help/disk/"><b>Rolling Disk Pendulum</b></a>
-- <a href="https://mechanics.help/elastic/"><b>Elastic Pendulum</b></a>
-- <a href="https://mechanics.help/mechmaths/"><b>Learn how mechmaths work</b></a>
+- <a href="./"><b>Mechsim Homepage</b></a>
+- <a href="./pend/"><b>Single Pendulum</b></a>
+- <a href="./dpend/"><b>Double Pendulum</b></a>
+- <a href="./atwood/"><b>Swinging Atwood Machine</b></a>
+- <a href="./slope/"><b>Disk on Slope</b></a>
+- <a href="./disk/"><b>Rolling Disk Pendulum</b></a>
+- <a href="./elastic/"><b>Elastic Pendulum</b></a>
+- <a href="./mechmaths/README.md"><b>Learn how mechmaths work</b></a>
 
 
 # Code Structure
@@ -33,7 +33,7 @@ One of the techniques I used was dynamically creating each simulation webpage en
 The system code is extremely intuitive to the point where even non-programmers should be capable of understanding how the system is set-up. The most complex system, the Rolling Disk Pendulum, has no less than 7 components exerting classical forces on each other, but the Euler-Lagrange equations convert this simply to a set of simultaneous equations that can be solved instantly for individual accelerations. This results in fluid motion appearing on the screen, no matter how chaotic the system is.
 
 # Documents
-- <a href="https://mechanics.help/maths/"><b>Mathematical Equations</b></a>
-- <a href="https://github.com/imtua/mechanics/blob/main/mechmaths/README.md"><b>MechMaths Operations</b></a>
+- <a href="./maths/"><b>Mathematical Equations</b></a>
+- <a href="https://github.com/imtua/mechsim/blob/main/mechmaths/README.md"><b>MechMaths Operations</b></a>
 
 Simulation pages include a Parameters panel with curated physical inputs such as mass, gravity, length, radius, and spring stiffness. Every input has a model-specific safe range; changing a value clamps it to that range, rebuilds the equations, and restarts the simulation from its initial state.# mechsim
