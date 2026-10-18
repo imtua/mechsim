@@ -74,6 +74,7 @@ def reset_playback():
     paused = True
     update_screen()
 
+
 def render_equation_label():
     Expression.latex_mode = True
     solver2 = Solver(*main_solver.original)
@@ -82,6 +83,7 @@ def render_equation_label():
     latex += "\\\\".join(solver2.display_equations())
     latex += "\\end{align*}"
     window.setEquationlabel(latex)
+
 
 def update_parameters(values):
     global main_constants

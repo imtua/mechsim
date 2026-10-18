@@ -13,9 +13,12 @@ constants = {"m": 1, "g": 10, "l": 1, "k": 20}
 solver.load_constants(constants)
 parameters = [
     {"name": "m", "label": "Mass (kg)", "min": 0.1, "max": 20, "step": 0.1},
-    {"name": "g", "label": "Gravity (m/s²)", "min": 0.1, "max": 30, "step": 0.1},
-    {"name": "l", "label": "Rest length (m)", "min": 0.1, "max": 3, "step": 0.1},
-    {"name": "k", "label": "Spring stiffness", "min": 0.1, "max": 100, "step": 0.1},
+    {"name": "g", "label": "Gravity (m/s²)",
+     "min": 0.1, "max": 30, "step": 0.1},
+    {"name": "l", "label": "Rest length (m)",
+     "min": 0.1, "max": 3, "step": 0.1},
+    {"name": "k", "label": "Spring stiffness",
+        "min": 0.1, "max": 100, "step": 0.1},
 ]
 
 if __name__ == "__main__":
