@@ -155,8 +155,8 @@ parametersToggle.addEventListener("click", () => {
 
 const systemScript = document.createElement("script");
 systemScript.type = "mpy";
-systemScript.src = "system.py?v=5";
-systemScript.setAttribute("config", "../mechsimulator-conf.json?v=5");
+systemScript.src = "system.py?v=6";
+systemScript.setAttribute("config", "../mechsimulator-conf.json?v=6");
 document.body.append(systemScript);
 
 MathJax = {
