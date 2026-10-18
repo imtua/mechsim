@@ -4,10 +4,10 @@
         "collections"
     ],
     "files": {
-        "../simulation_runner.py": "simulation_runner.py",
-        "../mechmaths/init.py": "mechmaths/__init__.py",
-        "../mechmaths/deriv.py": "mechmaths/",
-        "../mechmaths/engine.py": "mechmaths/",
-        "../mechmaths/system.py": "mechmaths/"
+        "./simulation_runner.py": "simulation_runner.py",
+        "./mechmaths/init.py": "mechmaths/__init__.py",
+        "./mechmaths/deriv.py": "mechmaths/",
+        "./mechmaths/engine.py": "mechmaths/",
+        "./mechmaths/system.py": "mechmaths/"
     }
 }
