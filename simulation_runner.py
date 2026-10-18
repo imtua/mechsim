@@ -1,6 +1,7 @@
 import ujson as json
 
-from mechmaths import Expression, Solver
+from mechmaths.deriv import Expression
+from mechmaths.engine import Solver
 from pyscript import window, ffi
 
 main_solver = None

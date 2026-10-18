@@ -1,4 +1,5 @@
-from mechmaths import Expression, Var, Solver
+from mechmaths.deriv import Expression, Var
+from mechmaths.engine import Solver
 from mechmaths.system import Vector, Mass, System
 import math
 

@@ -1,4 +1,5 @@
-from mechmaths import Expression, Var, Solver
+from mechmaths.deriv import Expression, Var
+from mechmaths.engine import Solver
 from mechmaths.system import Mass, Spring, Vector, System
 
 Expression.context = ["r", "theta"]
