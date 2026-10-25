@@ -11,7 +11,7 @@
             this.mechanismName = mechanismName;
             this.apiKey = apiKey;
             this.model = model || DEFAULT_MODEL;
-            this.apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;
+            this.apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent`;
             this.conversationHistory = [];
             this.isTyping = false;
             this.init();
@@ -27,7 +27,7 @@
             const toggle = document.createElement('button');
             toggle.id = 'gemma-chat-toggle';
             toggle.setAttribute('aria-label', `Ask Gemma about ${this.mechanismName}`);
-            toggle.innerHTML = '<span style="font-size: 1.5em;">💬</span>';
+            toggle.innerHTML = '<span style="font-size: 1.2em;">💬</span>';
             document.body.appendChild(toggle);
 
             const win = document.createElement('div');
@@ -113,6 +113,11 @@
             const text = this.input.value.trim();
             if (!text || this.isTyping) return;
 
+            if (!this.apiKey) {
+                this.addMessage('No API key configured. Please add your Gemma API key to gemma-chatbot-config.js.', 'error');
+                return;
+            }
+
             this.input.value = '';
             this.sendBtn.disabled = true;
 
@@ -164,7 +169,10 @@ RULES:
 
             const response = await fetch(this.apiEndpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.apiKey}`
+                },
                 body: JSON.stringify(requestBody)
             });
 
@@ -198,13 +206,6 @@ RULES:
         let apiKey = '';
         if (window.GEMMA_API_KEY) {
             apiKey = window.GEMMA_API_KEY;
-        }
-
-        if (!apiKey) {
-            console.warn(
-                '[Gemma Chatbot] API key not found. ' +
-                'Copy gemma-chatbot-config.js.example to gemma-chatbot-config.js and add your Google AI Studio API key.'
-            );
         }
 
         const model = window.GEMMA_MODEL || DEFAULT_MODEL;
