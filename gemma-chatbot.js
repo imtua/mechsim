@@ -11,7 +11,7 @@
             this.mechanismName = mechanismName;
             this.apiKey = apiKey;
             this.model = model || DEFAULT_MODEL;
-            this.apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent`;
+            this.apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;
             this.conversationHistory = [];
             this.isTyping = false;
             this.init();
@@ -113,8 +113,8 @@
             const text = this.input.value.trim();
             if (!text || this.isTyping) return;
 
-            if (!this.apiKey) {
-                this.addMessage('No API key configured. Please add your Gemma API key to gemma-chatbot-config.js.', 'error');
+            if (!this.apiKey || this.apiKey === 'PASTE_YOUR_GEMMA_API_KEY_HERE') {
+                this.addMessage('No API key configured. Add your Gemma key to gemma-chatbot-config.js.', 'error');
                 return;
             }
 
@@ -169,10 +169,7 @@ RULES:
 
             const response = await fetch(this.apiEndpoint, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.apiKey}`
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(requestBody)
             });
 
