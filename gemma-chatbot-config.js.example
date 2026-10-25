@@ -1,0 +1,8 @@
+// Gemma Chatbot Configuration
+// Copy this file to gemma-chatbot-config.js and fill in your API key.
+// Get your key at: https://aistudio.google.com/app/apikey
+
+window.GEMMA_API_KEY = 'your_gemma_api_key_here';
+
+// Optional: override the model (default is gemma-3-4b-it)
+// window.GEMMA_MODEL = 'gemma-3-4b-it';

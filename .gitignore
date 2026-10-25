@@ -1,0 +1,8 @@
+.env
+.env.local
+.env.*.local
+gemma-chatbot-config.js
+node_modules/
+.DS_Thumbs
+Thumbs.db
+*.log

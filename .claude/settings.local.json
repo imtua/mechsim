@@ -1,0 +1,6 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://co.agentrouter.org",
+    "ANTHROPIC_AUTH_TOKEN": "sk-KcEstTu9tFVrzoDkRw0lCgfyV706LmOr6Y93brZazMrKkniF"
+  }
+}
