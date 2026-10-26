@@ -1,7 +1,6 @@
-/* Browser-local AI assistant - Simple, small mechanism assistant */
+/* Groq-backed AI assistant - small mechanism assistant */
 
-/* Floating toggle button - small, bottom-right corner */
-#gemma-chat-toggle {
+#groq-chat-toggle {
     position: fixed;
     bottom: 1em;
     right: 1em;
@@ -21,12 +20,11 @@
     line-height: 1;
 }
 
-#gemma-chat-toggle:hover {
+#groq-chat-toggle:hover {
     background-color: #f0f0f0;
 }
 
-/* Chat window (hidden by default) */
-#gemma-chat-window {
+#groq-chat-window {
     position: fixed;
     bottom: 4.5em;
     right: 1em;
@@ -45,12 +43,11 @@
     overflow: hidden;
 }
 
-#gemma-chat-window.open {
+#groq-chat-window.open {
     display: flex;
 }
 
-/* Header */
-#gemma-chat-header {
+#groq-chat-header {
     background-color: #f0f0f0;
     border-bottom: 2px solid #000;
     padding: 0.5em 0.8em;
@@ -61,12 +58,21 @@
     font-weight: bold;
 }
 
-#gemma-chat-header #gemma-chat-mechanism-name {
+#groq-chat-header #groq-chat-mechanism-name {
     font-style: italic;
     font-size: 0.9em;
 }
 
-#gemma-chat-status {
+#groq-chat-close {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0 0.2em;
+    line-height: 1;
+}
+
+#groq-chat-status {
     min-height: 1.2em;
     padding: 0.35em 0.8em;
     border-bottom: 1px solid #ccc;
@@ -76,29 +82,11 @@
     line-height: 1.35;
 }
 
-#gemma-chat-status.loading {
-    color: #765500;
-}
+#groq-chat-status.loading { color: #765500; }
+#groq-chat-status.ready { color: #075d2a; }
+#groq-chat-status.error { color: #800; }
 
-#gemma-chat-status.ready {
-    color: #075d2a;
-}
-
-#gemma-chat-status.error {
-    color: #800;
-}
-
-#gemma-chat-close {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-    padding: 0 0.2em;
-    line-height: 1;
-}
-
-/* Messages area */
-#gemma-chat-messages {
+#groq-chat-messages {
     flex: 1;
     overflow-y: auto;
     padding: 0.6em;
@@ -108,7 +96,7 @@
     gap: 0.5em;
 }
 
-.gemma-message {
+.groq-message {
     padding: 0.4em 0.6em;
     border-radius: 6px;
     max-width: 90%;
@@ -118,46 +106,30 @@
     font-size: 0.85em;
 }
 
-.gemma-message.gemma {
-    background-color: #eef;
-    align-self: flex-start;
-}
-
-.gemma-message.user {
-    background-color: #fee;
-    align-self: flex-end;
-}
-
-.gemma-message.system,
-.gemma-message.welcome {
+.groq-message.groq { background-color: #eef; align-self: flex-start; }
+.groq-message.user { background-color: #fee; align-self: flex-end; }
+.groq-message.welcome {
     align-self: center;
     background-color: #ffeaa7;
     font-size: 0.75em;
     color: #555;
 }
 
-.gemma-message.denied {
-    background-color: #ffcccc;
-    align-self: flex-start;
-    font-size: 0.85em;
-}
-
-.gemma-message.error {
+.groq-message.error {
     background-color: #ffcccc;
     color: #800;
     align-self: flex-start;
     font-size: 0.85em;
 }
 
-.gemma-message small {
+.groq-message small {
     display: block;
     font-size: 0.7em;
     opacity: 0.7;
     margin-top: 0.15em;
 }
 
-/* Input area */
-#gemma-chat-input-area {
+#groq-chat-input-area {
     display: flex;
     border-top: 2px solid #000;
     padding: 0.5em;
@@ -165,7 +137,7 @@
     gap: 0.5em;
 }
 
-#gemma-chat-input {
+#groq-chat-input {
     flex: 1;
     padding: 0.4em 0.6em;
     border: 2px solid #000;
@@ -176,11 +148,9 @@
     outline: none;
 }
 
-#gemma-chat-input:focus {
-    border-color: #0066cc;
-}
+#groq-chat-input:focus { border-color: #0066cc; }
 
-#gemma-chat-send {
+#groq-chat-send {
     padding: 0.4em 0.8em;
     border: 2px solid #000;
     border-radius: 4px;
@@ -192,32 +162,20 @@
     cursor: pointer;
 }
 
-#gemma-chat-send:hover {
-    background-color: #e0e0e0;
-}
+#groq-chat-send:hover { background-color: #e0e0e0; }
+#groq-chat-send:disabled { opacity: 0.6; cursor: not-allowed; }
 
-#gemma-chat-send:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
+.groq-typing { font-style: italic; opacity: 0.75; font-size: 0.8em; }
 
-/* Typing indicator */
-.gemma-typing {
-    font-style: italic;
-    opacity: 0.75;
-    font-size: 0.8em;
-}
-
-/* Mobile adjustments */
 @media (max-width: 600px) {
-    #gemma-chat-toggle {
+    #groq-chat-toggle {
         bottom: 0.8em;
         right: 0.8em;
         width: 2.8em;
         height: 2.8em;
         font-size: 1em;
     }
-    #gemma-chat-window {
+    #groq-chat-window {
         bottom: 4em;
         right: 0.8em;
         left: 0.8em;

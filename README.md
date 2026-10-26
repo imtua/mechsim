@@ -38,13 +38,12 @@ The system code is extremely intuitive to the point where even non-programmers s
 
 Simulation pages include a Parameters panel with curated physical inputs such as mass, gravity, length, radius, and spring stiffness. Every input has a model-specific safe range; changing a value clamps it to that range, rebuilds the equations, and restarts the simulation from its initial state.
 
-# Browser-local AI chatbot
+# Groq AI chatbot
 
-The simulation pages include a mechanism-scoped AI chatbot powered by WebLLM. The
-model runs locally in the visitor's browser, so GitHub Pages needs no API key,
-server, or secret configuration. On first use, the browser downloads and caches a
-small Llama model; later visits reuse the cached model.
+The simulation pages include a mechanism-scoped AI chatbot powered by Groq. The
+GitHub Pages frontend calls the small Cloudflare Worker in `groq-proxy/`; the
+Worker stores the Groq API key as a secret and applies server-side rate limiting.
 
-The chatbot requires a WebGPU-capable browser such as a recent Chrome or Edge and
-an adequate GPU/device memory budget. If WebGPU is unavailable, the chat displays a
-clear setup error instead of breaking the simulation.
+Deploy the Worker first, then set its public `/chat` URL in
+`groq-chatbot-config.js`. See `groq-proxy/README.md` for the deployment commands.
+No Groq API key belongs in this repository.
