@@ -12,8 +12,9 @@ limit of five chat requests per client IP per minute.
 3. Configure the Google Auth platform OAuth consent screen and add test users
    while the app is in testing.
 4. Create an OAuth client with application type **Web application**. Add the
-   deployed site origin (`https://imtua.github.io`) and local origins such as
-   `http://localhost:8000` to its authorized JavaScript origins.
+   deployed site origin (`https://imtuu.me` or `https://imtua.github.io`) and
+   local origins such as `http://localhost:8000` to its authorized JavaScript
+   origins.
 5. Add these scopes to the consent configuration:
    `https://www.googleapis.com/auth/cloud-platform` and
    `https://www.googleapis.com/auth/generative-language.retriever`.
@@ -21,9 +22,9 @@ limit of five chat requests per client IP per minute.
 For the Mechsim GitHub Pages deployment, use these OAuth consent-screen links
 (replace the base URL if you use a custom domain):
 
-- Homepage: `https://imtua.github.io/mechsim/`
-- Privacy policy: `https://imtua.github.io/mechsim/privacy.html`
-- Terms of service: `https://imtua.github.io/mechsim/terms.html`
+- Homepage: `https://imtuu.me/mechsim/`
+- Privacy policy: `https://imtuu.me/mechsim/privacy.html`
+- Terms of service: `https://imtuu.me/mechsim/terms.html`
 
 While the OAuth app is in testing, only its configured test users can connect.
 Google may require OAuth verification before allowing unrestricted external
