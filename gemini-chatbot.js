@@ -1,6 +1,6 @@
 // Gemini-backed, mechanism-scoped AI assistant.
-// Google access tokens are kept in memory and are sent only to the protected
-// proxy for the current browser session.
+// Google access tokens are kept only for the current browser tab and are sent
+// only to the protected proxy.
 
 (function() {
     'use strict';
@@ -9,6 +9,7 @@
     const MAX_MESSAGE_LENGTH = 2000;
     const GOOGLE_IDENTITY_TIMEOUT = 10000;
     const AUTHORIZATION_FLAG = 'mechsim-gemini-authorized';
+    const TOKEN_STORAGE_KEY = 'mechsim-gemini-token';
     const config = window.GEMINI_CHAT_CONFIG || {};
 
     class GeminiChatbot {
@@ -21,10 +22,10 @@
                 'https://www.googleapis.com/auth/generative-language.retriever',
             ].join(' ');
             this.conversationHistory = [];
-            this.accessToken = null;
+            this.accessToken = this.readStoredAccessToken();
             this.tokenClient = null;
             this.isRestoring = false;
-            this.rememberedAuthorization = this.readAuthorizationFlag();
+            this.rememberedAuthorization = this.readAuthorizationFlag() || Boolean(this.accessToken);
             this.isTyping = false;
             this.contextPromise = this.loadMechanismContext();
             this.init();
@@ -158,6 +159,40 @@
             }
         }
 
+        readStoredAccessToken() {
+            try {
+                const stored = JSON.parse(window.sessionStorage.getItem(TOKEN_STORAGE_KEY) || 'null');
+                if (!stored?.accessToken || !Number.isFinite(stored.expiresAt)) return null;
+                if (Date.now() >= stored.expiresAt) {
+                    window.sessionStorage.removeItem(TOKEN_STORAGE_KEY);
+                    return null;
+                }
+                return stored.accessToken;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        storeAccessToken(response) {
+            try {
+                const lifetime = Number(response.expires_in) || 3600;
+                window.sessionStorage.setItem(TOKEN_STORAGE_KEY, JSON.stringify({
+                    accessToken: response.access_token,
+                    expiresAt: Date.now() + Math.max(lifetime - 60, 60) * 1000,
+                }));
+            } catch (error) {
+                // Private browsing or storage restrictions should not block chat.
+            }
+        }
+
+        clearStoredAccessToken() {
+            try {
+                window.sessionStorage.removeItem(TOKEN_STORAGE_KEY);
+            } catch (error) {
+                // Storage may be unavailable in private browsing.
+            }
+        }
+
         updateChatEnabledState() {
             const enabled = Boolean(this.accessToken && this.proxyUrl);
             this.input.disabled = !enabled;
@@ -211,21 +246,16 @@
         }
 
         async restoreGoogleConnection() {
-            if (!this.rememberedAuthorization || !this.clientId || !this.proxyUrl) return;
-
-            this.isRestoring = true;
-            this.connectBtn.disabled = true;
-            this.setAuthStatus('Restoring Google connection…', 'loading');
-            try {
-                const oauth2 = await this.waitForGoogleIdentityServices();
-                this.tokenClient = this.createTokenClient(oauth2);
-                // The grant is remembered by Google; only request a new short-lived token.
-                this.tokenClient.requestAccessToken({ prompt: '' });
-            } catch (error) {
-                this.isRestoring = false;
-                this.connectBtn.disabled = false;
-                this.setAuthStatus('Google not connected');
-                this.setStatus('Connect Google to restore access.');
+            if (this.accessToken) {
+                this.setAuthStatus('Google connected', 'ready');
+                this.connectBtn.textContent = 'Disconnect Google';
+                this.setStatus('Gemini is ready.', 'ready');
+                this.updateChatEnabledState();
+                return;
+            }
+            if (this.rememberedAuthorization && this.clientId && this.proxyUrl) {
+                this.connectBtn.textContent = 'Restore Google';
+                this.setStatus('Click Restore Google to renew access.');
             }
         }
 
@@ -268,6 +298,7 @@
             }
 
             this.accessToken = response.access_token;
+            this.storeAccessToken(response);
             this.writeAuthorizationFlag(true);
             this.setAuthStatus('Google connected', 'ready');
             this.connectBtn.textContent = 'Disconnect Google';
@@ -301,6 +332,7 @@
             this.accessToken = null;
             this.tokenClient = null;
             this.isRestoring = false;
+            this.clearStoredAccessToken();
             this.writeAuthorizationFlag(false);
             this.connectBtn.textContent = 'Connect Google';
             this.setAuthStatus('Google not connected');

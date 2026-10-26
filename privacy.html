@@ -39,11 +39,13 @@
             If you choose to connect Google, Mechsim uses Google Identity Services
             to request an OAuth access token for the Gemini API. Mechsim does not
             receive your Google password. The access token is kept in the current
-            browser session memory and is not saved in Mechsim cookies or a Mechsim
-            database. Mechsim stores only a non-sensitive local flag indicating that
-            you previously granted access, so it can request a fresh token without
-            showing the consent screen again. You can disconnect and revoke access
-            from the chat window or from your Google Account settings.
+            browser session memory and in the current tab’s <code>sessionStorage</code>
+            so navigation between mechanism pages does not interrupt the chat. It is
+            cleared when the tab closes or when you disconnect. Mechsim does not save
+            the token in cookies or a database. Mechsim also stores a non-sensitive
+            local flag indicating that you previously granted access, so it can
+            renew access without showing the consent screen again. You can disconnect
+            and revoke access from the chat window or from your Google Account settings.
         </p>
         <p>
             When you use the chat assistant, your question, the current conversation
