@@ -1,0 +1,68 @@
+body:not(.home-body).legal-body {
+    min-height: 100vh;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 2rem 1rem 4rem;
+}
+
+.legal-container {
+    width: min(100%, 52rem);
+    margin: 0 auto;
+}
+
+.legal-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.legal-nav a,
+.legal-footer a {
+    color: inherit;
+}
+
+.legal-nav a {
+    padding: 0.25rem 0.5rem;
+    border: 2px solid black;
+    background-color: white;
+    text-decoration: none;
+}
+
+.legal-nav a:hover {
+    background-color: #ccc;
+}
+
+.legal-container h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin: 0 0 0.25rem;
+}
+
+.legal-updated {
+    color: #555;
+    margin: 0 0 2rem;
+}
+
+.legal-container h2 {
+    margin-top: 2rem;
+    font-size: 1.35rem;
+}
+
+.legal-container p,
+.legal-container li {
+    line-height: 1.65;
+}
+
+.legal-container li + li {
+    margin-top: 0.5rem;
+}
+
+.legal-container code {
+    overflow-wrap: anywhere;
+}
+
+.legal-footer {
+    border-top: 2px solid black;
+    margin-top: 3rem;
+    padding-top: 1rem;
+}

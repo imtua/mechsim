@@ -18,6 +18,13 @@ limit of five chat requests per client IP per minute.
    `https://www.googleapis.com/auth/cloud-platform` and
    `https://www.googleapis.com/auth/generative-language.retriever`.
 
+For the Mechsim GitHub Pages deployment, use these OAuth consent-screen links
+(replace the base URL if you use a custom domain):
+
+- Homepage: `https://imtua.github.io/mechsim/`
+- Privacy policy: `https://imtua.github.io/mechsim/privacy.html`
+- Terms of service: `https://imtua.github.io/mechsim/terms.html`
+
 While the OAuth app is in testing, only its configured test users can connect.
 Google may require OAuth verification before allowing unrestricted external
 users to grant these scopes.

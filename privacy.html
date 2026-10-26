@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Mechsim</title>
+    <link rel="stylesheet" href="style.css?v=mobile">
+    <link rel="stylesheet" href="legal.css">
+    <link rel="icon" type="image/svg+xml" href="simulation.svg" />
+</head>
+
+<body class="legal-body">
+    <main class="legal-container">
+        <nav class="legal-nav" aria-label="Legal pages">
+            <a href="./">Mechsim home</a>
+            <a href="terms.html">Terms of Service</a>
+        </nav>
+
+        <h1>Privacy Policy</h1>
+        <p class="legal-updated">Last updated: October 27, 2026</p>
+
+        <p>
+            Mechsim is an open-source mechanics simulator operated by Imtiaz Ahamed.
+            This policy explains what information is processed when you use the
+            Mechsim website and its optional Gemini-powered chat assistant.
+        </p>
+
+        <h2>Information the simulations use</h2>
+        <p>
+            The simulations run in your browser. You can use the simulator pages
+            without creating an account or providing personal information. Physical
+            parameters and playback controls are used locally to calculate and render
+            the simulations; they are not sent to Mechsim by the simulator itself.
+        </p>
+
+        <h2>Google connection and Gemini chat</h2>
+        <p>
+            If you choose to connect Google, Mechsim uses Google Identity Services
+            to request an OAuth access token for the Gemini API. Mechsim does not
+            receive your Google password. The access token is kept in the current
+            browser session memory and is not saved in Mechsim cookies,
+            <code>localStorage</code>, or a Mechsim database. You can disconnect and
+            revoke access from the chat window or from your Google Account settings.
+        </p>
+        <p>
+            When you use the chat assistant, your question, the current conversation
+            messages, the mechanism name, and the mechanism description are sent to
+            the Mechsim Cloudflare Worker. The Worker forwards the request to the
+            Google Gemini API so Gemini can generate an answer. Do not submit
+            passwords, financial information, health information, or other sensitive
+            information to the chat.
+        </p>
+
+        <h2>Technical information and rate limiting</h2>
+        <p>
+            The chat Worker uses the connecting IP address supplied by Cloudflare to
+            apply a limit of five chat requests per minute per client address. This
+            is used to protect the service from abuse. Cloudflare, Google, and the
+            hosting providers may independently process technical information such
+            as IP addresses, browser requests, and service logs under their own
+            privacy policies.
+        </p>
+
+        <h2>How information is used</h2>
+        <ul>
+            <li>To run and display the mechanics simulations.</li>
+            <li>To provide the optional Gemini physics assistant you request.</li>
+            <li>To protect the chat service and enforce rate limits.</li>
+            <li>To maintain, secure, and troubleshoot the website.</li>
+        </ul>
+
+        <h2>Sharing and retention</h2>
+        <p>
+            Mechsim does not sell personal information. Chat requests are shared
+            with Google Gemini because that is the service you choose when using the
+            assistant, and requests pass through Cloudflare because it hosts the
+            proxy. The Mechsim Worker does not intentionally store OAuth tokens or
+            chat histories. The browser keeps the current chat history only in page
+            memory, so it is cleared when the page is closed or reloaded. Google,
+            Cloudflare, and GitHub may retain information according to their own
+            policies and terms.
+        </p>
+
+        <h2>Your choices</h2>
+        <ul>
+            <li>Use the simulations without connecting a Google account.</li>
+            <li>Do not send a question to Gemini if you do not want it processed.</li>
+            <li>Disconnect the Google account from the chat window at any time.</li>
+            <li>Revoke Mechsim’s Google access at <a href="https://myaccount.google.com/permissions">Google Account permissions</a>.</li>
+        </ul>
+
+        <h2>Children’s privacy</h2>
+        <p>
+            Mechsim is an educational project and is not directed at children under
+            13. We do not knowingly collect personal information from children.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+            This policy may be updated when the website or its data practices change.
+            The date at the top of this page identifies the latest version.
+        </p>
+
+        <div class="legal-footer">
+            <strong>Questions?</strong>
+            <a href="https://github.com/imtua/mechsim/issues">Contact the Mechsim project on GitHub</a>.
+        </div>
+    </main>
+</body>
+
+</html>
