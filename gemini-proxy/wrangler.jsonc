@@ -6,7 +6,7 @@
     "workers_dev": true,
     "vars": {
         "ALLOWED_ORIGINS": "https://imtuu.me,https://imtua.github.io,http://localhost:8000,http://127.0.0.1:8000",
-        "GEMINI_PROJECT_ID": "",
+        "GEMINI_PROJECT_ID": "gen-lang-client-0293438954",
         "GEMINI_MODEL": "gemini-2.5-flash"
     },
     "ratelimits": [
