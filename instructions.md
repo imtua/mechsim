@@ -33,9 +33,18 @@ Shared implementation:
 - `simulation_runner.py` controls time stepping and browser callbacks.
 - `mechsimulator.js` provides the controls, metrics, energy display, equation
   display, and drawing helpers.
+- `gemma-chatbot.js` provides the optional browser-local AI assistant using WebLLM;
+  it requires no API key and loads its model only when the chat is opened.
 
 Every page supports reset, play/pause, single-step playback, parameter
 controls, a description modal, and a view of its `system.py` model.
+
+## Browser-local AI assistant
+
+The mechanism chat runs the `Llama-3.2-1B-Instruct-q4f16_1-MLC` model locally
+through WebLLM. The model is downloaded from the browser on first use and cached
+for later visits. It requires a WebGPU-capable browser; the simulation itself does
+not depend on WebGPU and continues to work if the assistant is unavailable.
 
 ## Simple Pendulum
 

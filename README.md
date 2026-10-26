@@ -36,4 +36,15 @@ The system code is extremely intuitive to the point where even non-programmers s
 - <a href="./maths/"><b>Mathematical Equations</b></a>
 - <a href="https://github.com/imtua/mechsim/blob/main/mechmaths/README.md"><b>MechMaths Operations</b></a>
 
-Simulation pages include a Parameters panel with curated physical inputs such as mass, gravity, length, radius, and spring stiffness. Every input has a model-specific safe range; changing a value clamps it to that range, rebuilds the equations, and restarts the simulation from its initial state.# mechsim
+Simulation pages include a Parameters panel with curated physical inputs such as mass, gravity, length, radius, and spring stiffness. Every input has a model-specific safe range; changing a value clamps it to that range, rebuilds the equations, and restarts the simulation from its initial state.
+
+# Browser-local AI chatbot
+
+The simulation pages include a mechanism-scoped AI chatbot powered by WebLLM. The
+model runs locally in the visitor's browser, so GitHub Pages needs no API key,
+server, or secret configuration. On first use, the browser downloads and caches a
+small Llama model; later visits reuse the cached model.
+
+The chatbot requires a WebGPU-capable browser such as a recent Chrome or Edge and
+an adequate GPU/device memory budget. If WebGPU is unavailable, the chat displays a
+clear setup error instead of breaking the simulation.

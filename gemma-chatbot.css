@@ -1,4 +1,4 @@
-/* Gemma Chatbot - Simple, small mechanism assistant */
+/* Browser-local AI assistant - Simple, small mechanism assistant */
 
 /* Floating toggle button - small, bottom-right corner */
 #gemma-chat-toggle {
@@ -64,6 +64,28 @@
 #gemma-chat-header #gemma-chat-mechanism-name {
     font-style: italic;
     font-size: 0.9em;
+}
+
+#gemma-chat-status {
+    min-height: 1.2em;
+    padding: 0.35em 0.8em;
+    border-bottom: 1px solid #ccc;
+    background-color: #fafafa;
+    color: #666;
+    font-size: 0.75em;
+    line-height: 1.35;
+}
+
+#gemma-chat-status.loading {
+    color: #765500;
+}
+
+#gemma-chat-status.ready {
+    color: #075d2a;
+}
+
+#gemma-chat-status.error {
+    color: #800;
 }
 
 #gemma-chat-close {
