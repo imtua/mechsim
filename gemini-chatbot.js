@@ -8,6 +8,7 @@
     const MAX_HISTORY = 8;
     const MAX_MESSAGE_LENGTH = 2000;
     const GOOGLE_IDENTITY_TIMEOUT = 10000;
+    const AUTHORIZATION_FLAG = 'mechsim-gemini-authorized';
     const config = window.GEMINI_CHAT_CONFIG || {};
 
     class GeminiChatbot {
@@ -22,6 +23,8 @@
             this.conversationHistory = [];
             this.accessToken = null;
             this.tokenClient = null;
+            this.isRestoring = false;
+            this.rememberedAuthorization = this.readAuthorizationFlag();
             this.isTyping = false;
             this.contextPromise = this.loadMechanismContext();
             this.init();
@@ -31,6 +34,7 @@
             this.createUI();
             this.setupEventListeners();
             this.showWelcomeMessage();
+            this.restoreGoogleConnection();
         }
 
         createUI() {
@@ -136,6 +140,24 @@
             this.authStatus.className = type;
         }
 
+        readAuthorizationFlag() {
+            try {
+                return window.localStorage.getItem(AUTHORIZATION_FLAG) === 'true';
+            } catch (error) {
+                return false;
+            }
+        }
+
+        writeAuthorizationFlag(value) {
+            this.rememberedAuthorization = value;
+            try {
+                if (value) window.localStorage.setItem(AUTHORIZATION_FLAG, 'true');
+                else window.localStorage.removeItem(AUTHORIZATION_FLAG);
+            } catch (error) {
+                // Private browsing or storage restrictions should not block chat.
+            }
+        }
+
         updateChatEnabledState() {
             const enabled = Boolean(this.accessToken && this.proxyUrl);
             this.input.disabled = !enabled;
@@ -179,11 +201,40 @@
             });
         }
 
+        createTokenClient(oauth2) {
+            return oauth2.initTokenClient({
+                client_id: this.clientId,
+                scope: this.scope,
+                callback: (response) => this.handleTokenResponse(response),
+                error_callback: (error) => this.handleTokenError(error),
+            });
+        }
+
+        async restoreGoogleConnection() {
+            if (!this.rememberedAuthorization || !this.clientId || !this.proxyUrl) return;
+
+            this.isRestoring = true;
+            this.connectBtn.disabled = true;
+            this.setAuthStatus('Restoring Google connection…', 'loading');
+            try {
+                const oauth2 = await this.waitForGoogleIdentityServices();
+                this.tokenClient = this.createTokenClient(oauth2);
+                // The grant is remembered by Google; only request a new short-lived token.
+                this.tokenClient.requestAccessToken({ prompt: '' });
+            } catch (error) {
+                this.isRestoring = false;
+                this.connectBtn.disabled = false;
+                this.setAuthStatus('Google not connected');
+                this.setStatus('Connect Google to restore access.');
+            }
+        }
+
         async toggleGoogleConnection() {
             if (this.accessToken) {
                 this.disconnectGoogle();
                 return;
             }
+            if (this.isRestoring) return;
 
             if (!this.clientId) {
                 this.setStatus('Set the Google OAuth client ID in gemini-chatbot-config.js first.', 'error');
@@ -198,13 +249,9 @@
             this.setAuthStatus('Waiting for Google…', 'loading');
             try {
                 const oauth2 = await this.waitForGoogleIdentityServices();
-                this.tokenClient = oauth2.initTokenClient({
-                    client_id: this.clientId,
-                    scope: this.scope,
-                    callback: (response) => this.handleTokenResponse(response),
-                    error_callback: (error) => this.handleTokenError(error),
-                });
-                this.tokenClient.requestAccessToken({ prompt: 'consent' });
+                this.tokenClient = this.createTokenClient(oauth2);
+                // Google shows consent only when this account has not granted the scope yet.
+                this.tokenClient.requestAccessToken({ prompt: '' });
             } catch (error) {
                 this.connectBtn.disabled = false;
                 this.setAuthStatus('Google not connected', 'error');
@@ -213,6 +260,7 @@
         }
 
         handleTokenResponse(response) {
+            this.isRestoring = false;
             this.connectBtn.disabled = false;
             if (!response || response.error || !response.access_token) {
                 this.handleTokenError(response || {});
@@ -220,6 +268,7 @@
             }
 
             this.accessToken = response.access_token;
+            this.writeAuthorizationFlag(true);
             this.setAuthStatus('Google connected', 'ready');
             this.connectBtn.textContent = 'Disconnect Google';
             this.setStatus('Gemini is ready.', 'ready');
@@ -228,8 +277,20 @@
         }
 
         handleTokenError(error) {
+            const restoring = this.isRestoring;
+            this.isRestoring = false;
             this.connectBtn.disabled = false;
             this.setAuthStatus('Google not connected', 'error');
+            if (restoring) {
+                this.setAuthStatus('Google not connected');
+                this.setStatus('Connect Google to restore access.');
+                return;
+            }
+            if (this.rememberedAuthorization && error?.error === 'interaction_required') {
+                this.writeAuthorizationFlag(false);
+                this.setStatus('Google access needs to be granted again. Click Connect Google.', 'error');
+                return;
+            }
             if (error?.error !== 'popup_closed') {
                 this.setStatus(error?.error_description || 'Google authorization was not completed.', 'error');
             }
@@ -239,6 +300,8 @@
             const token = this.accessToken;
             this.accessToken = null;
             this.tokenClient = null;
+            this.isRestoring = false;
+            this.writeAuthorizationFlag(false);
             this.connectBtn.textContent = 'Connect Google';
             this.setAuthStatus('Google not connected');
             this.setStatus('Connect Google to start using Gemini.');
