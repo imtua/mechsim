@@ -33,19 +33,20 @@ Shared implementation:
 - `simulation_runner.py` controls time stepping and browser callbacks.
 - `mechsimulator.js` provides the controls, metrics, energy display, equation
   display, and drawing helpers.
-- `groq-chatbot.js` provides the mechanism-scoped AI assistant through the Groq
-  proxy in `groq-proxy/`; the Groq API key stays server-side.
+- `gemini-chatbot.js` provides the mechanism-scoped AI assistant through Google
+  OAuth and the Gemini proxy in `gemini-proxy/`.
 
 Every page supports reset, play/pause, single-step playback, parameter
 controls, a description modal, and a view of its `system.py` model.
 
-## Groq AI assistant
+## Gemini AI assistant
 
 The mechanism chat sends a small, validated conversation to the Cloudflare Worker
-in `groq-proxy/`. The Worker calls Groq with `openai/gpt-oss-20b`, keeps the API
-key in a Wrangler secret, allows only configured website origins, and limits each
-client IP to five requests per minute. GitHub Pages only needs the public Worker
-URL in `groq-chatbot-config.js`.
+in `gemini-proxy/`. A user connects a Google account through Google Identity
+Services, and the Worker forwards that short-lived OAuth token to Gemini. The
+Worker allows only configured website origins and limits each client IP to five
+requests per minute. GitHub Pages needs the public Worker URL and Google OAuth
+client ID in `gemini-chatbot-config.js`.
 
 ## Simple Pendulum
 

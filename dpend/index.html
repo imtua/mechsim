@@ -6,14 +6,15 @@
     <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
     <link rel="stylesheet" href="../style.css?v=mobile">
-    <link rel="stylesheet" href="../groq-chatbot.css?v=groq-1">
+    <link rel="stylesheet" href="../gemini-chatbot.css?v=gemini-1">
     <link rel="icon" type="image/svg+xml" href="simulation.svg" />
 </head>
 
 <body>
     <script src="../mechsimulator.js"></script>
-    <script src="../groq-chatbot-config.js"></script>
-    <script src="../groq-chatbot.js?v=groq-1"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="../gemini-chatbot-config.js"></script>
+    <script src="../gemini-chatbot.js?v=gemini-1"></script>
     <script>
         mechasimulator.title = "Double Pendulum";
         mechasimulator.symbols.names = ["t1", "l1", "m1", "t2", "l2", "m2"];

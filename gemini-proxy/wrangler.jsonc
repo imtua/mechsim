@@ -1,15 +1,13 @@
 {
     "$schema": "node_modules/wrangler/config-schema.json",
-    "name": "mechsim-groq-proxy",
+    "name": "mechsim-gemini-proxy",
     "main": "src/index.js",
     "compatibility_date": "2026-10-26",
     "workers_dev": true,
     "vars": {
         "ALLOWED_ORIGINS": "https://imtua.github.io,http://localhost:8000,http://127.0.0.1:8000",
-        "GROQ_MODEL": "openai/gpt-oss-20b"
-    },
-    "secrets": {
-        "required": ["GROQ_API_KEY"]
+        "GEMINI_PROJECT_ID": "",
+        "GEMINI_MODEL": "gemini-2.5-flash"
     },
     "ratelimits": [
         {

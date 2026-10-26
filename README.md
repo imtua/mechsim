@@ -38,12 +38,15 @@ The system code is extremely intuitive to the point where even non-programmers s
 
 Simulation pages include a Parameters panel with curated physical inputs such as mass, gravity, length, radius, and spring stiffness. Every input has a model-specific safe range; changing a value clamps it to that range, rebuilds the equations, and restarts the simulation from its initial state.
 
-# Groq AI chatbot
+# Gemini AI chatbot
 
-The simulation pages include a mechanism-scoped AI chatbot powered by Groq. The
-GitHub Pages frontend calls the small Cloudflare Worker in `groq-proxy/`; the
-Worker stores the Groq API key as a secret and applies server-side rate limiting.
+The simulation pages include a mechanism-scoped AI chatbot powered by Gemini.
+Users connect a Google account through Google Identity Services; the short-lived
+OAuth token stays in the browser session and is forwarded to the Cloudflare
+Worker in `gemini-proxy/`. The Worker applies server-side rate limiting and
+never stores user tokens or a shared API key.
 
-Deploy the Worker first, then set its public `/chat` URL in
-`groq-chatbot-config.js`. See `groq-proxy/README.md` for the deployment commands.
-No Groq API key belongs in this repository.
+Configure the Google OAuth client ID and the deployed Worker `/chat` URL in
+`gemini-chatbot-config.js`. See `gemini-proxy/README.md` for Google Cloud and
+deployment steps. A Google AI subscription's AI Studio quota does not
+automatically apply to third-party Gemini API requests.
